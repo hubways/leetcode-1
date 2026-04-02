@@ -1209,7 +1209,7 @@ A greedy strategy works well here. After sorting intervals by their **start time
 Why this works:
 
 - When two intervals overlap, keeping the one with the **smaller end time** leaves more room for future intervals
-- Removing the interval with the larger end is always a worse choice, because it blocks more upcoming intervals
+- Removing the interval with the larger end is always the better choice, because keeping it would block more upcoming intervals
 
 So instead of choosing which interval to keep globally, we make a **local greedy decision** whenever an overlap happens.
 
