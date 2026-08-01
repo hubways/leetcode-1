@@ -224,10 +224,10 @@ func minMeetingRooms(intervals []Interval) int {
 
 class Solution {
     fun minMeetingRooms(intervals: List<Interval>): Int {
-        intervals.sortBy { it.start }
+        val sortedIntervals = intervals.sortedBy { it.start }
 
         val minHeap = PriorityQueue<Int>()
-        for (interval in intervals) {
+        for (interval in sortedIntervals) {
             if (minHeap.isNotEmpty() && minHeap.peek() <= interval.start) {
                 minHeap.poll()
             }
@@ -257,7 +257,7 @@ class Solution {
         let sortedIntervals = intervals.sorted { $0.start < $1.start }
         var minHeap = Heap<Int>()
         for interval in sortedIntervals {
-            if !minHeap.isEmpty, let earliest = minHeap.min!, earliest <= interval.start {
+            if let earliest = minHeap.min, earliest <= interval.start {
                 minHeap.removeMin()
             }
             minHeap.insert(interval.end)
@@ -269,18 +269,18 @@ class Solution {
 
 ```rust
 impl Solution {
-    pub fn min_meeting_rooms(intervals: Vec<Vec<i32>>) -> i32 {
+    pub fn min_meeting_rooms(intervals: Vec<Interval>) -> i32 {
         let mut intervals = intervals;
-        intervals.sort_by_key(|v| v[0]);
+        intervals.sort_by_key(|v| v.start);
         let mut min_heap = BinaryHeap::new();
 
         for interval in &intervals {
             if let Some(&Reverse(top)) = min_heap.peek() {
-                if top <= interval[0] {
+                if top <= interval.start {
                     min_heap.pop();
                 }
             }
-            min_heap.push(Reverse(interval[1]));
+            min_heap.push(Reverse(interval.end));
         }
 
         min_heap.len() as i32
@@ -575,11 +575,11 @@ class Solution {
 
 ```rust
 impl Solution {
-    pub fn min_meeting_rooms(intervals: Vec<Vec<i32>>) -> i32 {
+    pub fn min_meeting_rooms(intervals: Vec<Interval>) -> i32 {
         let mut mp = BTreeMap::new();
         for i in &intervals {
-            *mp.entry(i[0]).or_insert(0) += 1;
-            *mp.entry(i[1]).or_insert(0) -= 1;
+            *mp.entry(i.start).or_insert(0) += 1;
+            *mp.entry(i.end).or_insert(0) -= 1;
         }
         let mut prev = 0;
         let mut res = 0;
@@ -946,10 +946,10 @@ class Solution {
 
 ```rust
 impl Solution {
-    pub fn min_meeting_rooms(intervals: Vec<Vec<i32>>) -> i32 {
+    pub fn min_meeting_rooms(intervals: Vec<Interval>) -> i32 {
         let n = intervals.len();
-        let mut starts: Vec<i32> = intervals.iter().map(|v| v[0]).collect();
-        let mut ends: Vec<i32> = intervals.iter().map(|v| v[1]).collect();
+        let mut starts: Vec<i32> = intervals.iter().map(|v| v.start).collect();
+        let mut ends: Vec<i32> = intervals.iter().map(|v| v.end).collect();
         starts.sort();
         ends.sort();
 
@@ -1226,7 +1226,7 @@ func minMeetingRooms(intervals []Interval) int {
  */
 
 class Solution {
-    fun minMeetingRooms(intervals: Array<IntArray>): Int {
+    fun minMeetingRooms(intervals: List<Interval>): Int {
         val time = mutableListOf<Pair<Int, Int>>()
 
         for (i in intervals) {
@@ -1293,11 +1293,11 @@ class Solution {
 
 ```rust
 impl Solution {
-    pub fn min_meeting_rooms(intervals: Vec<Vec<i32>>) -> i32 {
+    pub fn min_meeting_rooms(intervals: Vec<Interval>) -> i32 {
         let mut time: Vec<(i32, i32)> = Vec::new();
         for i in &intervals {
-            time.push((i[0], 1));
-            time.push((i[1], -1));
+            time.push((i.start, 1));
+            time.push((i.end, -1));
         }
 
         time.sort();
