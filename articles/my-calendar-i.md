@@ -803,8 +803,6 @@ public class MyCalendar {
 ```
 
 ```go
-import "sort"
-
 type MyCalendar struct {
     events [][2]int
 }
