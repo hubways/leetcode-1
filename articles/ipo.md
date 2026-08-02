@@ -165,10 +165,6 @@ public class Solution {
 ```
 
 ```go
-import (
-    "container/heap"
-)
-
 type MinCapitalHeap [][]int
 func (h MinCapitalHeap) Len() int           { return len(h) }
 func (h MinCapitalHeap) Less(i, j int) bool { return h[i][0] < h[j][0] }
@@ -473,10 +469,6 @@ public class Solution {
 ```
 
 ```go
-import (
-    "container/heap"
-)
-
 type MinCapitalHeap struct {
     indices []int
     capital []int
@@ -791,11 +783,6 @@ public class Solution {
 ```
 
 ```go
-import (
-    "container/heap"
-    "sort"
-)
-
 type MaxHeap []int
 
 func (h MaxHeap) Len() int           { return len(h) }

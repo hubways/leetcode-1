@@ -230,10 +230,6 @@ public class Solution {
 ```
 
 ```go
-import (
-    "container/heap"
-)
-
 type Pair struct {
     node int
     prob float64
@@ -657,10 +653,6 @@ public class Solution {
 ```
 
 ```go
-import (
-    "container/heap"
-)
-
 type Pair struct {
     node int
     prob float64
